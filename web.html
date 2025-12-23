@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas, My Love</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* 深邃星空背景 */
+            color: #fff;
+            font-family: 'Microsoft YaHei', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 飘雪动画容器 */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content {
+            z-index: 10;
+            max-width: 600px;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            text-shadow: 0 0 10px #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            margin: 20px auto;
+            background-color: #ddd; /* 图片未加载时的背景色 */
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timer {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .timer b {
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+
+        .letter {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .letter::before {
+            content: '❤';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: #ff6b6b;
+        }
+
+        .music-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 雪花简单的CSS实现 */
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial;
+            text-shadow: 0 0 1px #000;
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes snowflakes-shake {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(80px); }
+            100% { transform: translateX(0px); }
+        }
+
+        /* 生成不同位置的雪花 */
+        .snowflake:nth-of-type(1) { left: 1%; animation-delay: 0s, 0s; }
+        .snowflake:nth-of-type(2) { left: 10%; animation-delay: 1s, 1s; }
+        .snowflake:nth-of-type(3) { left: 20%; animation-delay: 6s, 0.5s; }
+        .snowflake:nth-of-type(4) { left: 30%; animation-delay: 4s, 2s; }
+        .snowflake:nth-of-type(5) { left: 40%; animation-delay: 2s, 2s; }
+        .snowflake:nth-of-type(6) { left: 50%; animation-delay: 8s, 3s; }
+        .snowflake:nth-of-type(7) { left: 60%; animation-delay: 6s, 2s; }
+        .snowflake:nth-of-type(8) { left: 70%; animation-delay: 2.5s, 1s; }
+        .snowflake:nth-of-type(9) { left: 80%; animation-delay: 1s, 0s; }
+        .snowflake:nth-of-type(10) { left: 90%; animation-delay: 3s, 1.5s; }
+    </style>
+</head>
+<body>
+
+    <div class="snow-container">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+    </div>
+
+    <div class="content">
+        <h1>Merry Christmas! 🎄</h1>
+        
+        <div class="photo-frame">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop" alt="Our Photo">
+        </div>
+
+        <div class="timer">
+            我们已经相爱了：<br>
+            <b id="days">0</b> 天 
+            <b id="hours">0</b> 小时 
+            <b id="minutes">0</b> 分 
+            <b id="seconds">0</b> 秒
+        </div>
+
+        <button class="music-btn" onclick="toggleMusic()">🎵 点击播放专属BGM</button>
+        <audio id="bgm" loop>
+            <source src="https://music.163.com/song/media/outer/url?id=186016.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="letter">
+            <p><strong>亲爱的宝贝：</strong></p>
+            <p>圣诞快乐！虽然今年圣诞我们隔着屏幕，但我的心一直都在你身边。</p>
+            <p>做了这个小网页给你，是想告诉你，无论距离多远，我们在一起的每一分每一秒我都记得。</p>
+            <p>等我们下次见面，我一定给你一个大大的拥抱！</p>
+            <p style="text-align: right;">永远爱你的，<br>XXX</p>
+        </div>
+    </div>
+
+    <script>
+        // --- 请修改这里的日期 ---
+        // 格式：YYYY-MM-DD
+        const startDate = new Date("2023-01-01"); 
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // 音乐播放控制
+        function toggleMusic() {
+            const audio = document.getElementById("bgm");
+            const btn = document.querySelector(".music-btn");
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = "🎵 正在播放我们的歌...";
+            } else {
+                audio.pause();
+                btn.innerText = "🎵 点击播放专属BGM";
+            }
+        }
+    </script>
+</body>
+</html>
