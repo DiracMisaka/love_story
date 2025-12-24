@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的恋爱时光机</title>
+    <style>
+        /* --- 基础样式 --- */
+        /* ✨ 改动1：背景色变成了淡淡的粉色 */
+        body { background-color: #fff5f7; font-family: 'Microsoft YaHei', sans-serif; margin: 0; }
+        
+        /* 顶部封面 */
+        .header {
+            min-height: 250px; 
+            /* ✨ 改动2：顶部变成了粉色渐变 */
+            background: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; /* 字体保持白色，对比度高 */
+            padding: 20px;
+        }
+        .header h1 { text-shadow: 2px 2px 4px rgba(0,0,0,0.1); margin: 0; font-size: 2rem; }
+        .header p { margin: 10px 0 0 0; opacity: 0.9; }
+
+        /* 倒计时样式 */
+        .timer-box {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.3); /* 稍微增加一点透明度 */
+            padding: 15px 30px;
+            border-radius: 50px; 
+            backdrop-filter: blur(5px); 
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2); /* 阴影也带一点粉色 */
+            text-align: center;
+        }
+        .timer-box span { font-size: 1rem; margin: 0 2px; color: #fff; }
+        .timer-box b {
+            font-size: 1.5rem; margin: 0 4px; font-family: 'Arial', sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); color: #fff;
+        }
+        
+        /* 时间轴容器 */
+        .timeline { max-width: 800px; margin: 40px auto; position: relative; padding: 0 20px; }
+        /* 中轴线颜色，改成浅粉色 */
+        .timeline::after {
+            content: ''; position: absolute; width: 4px; background-color: #ffd1d1;
+            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px;
+        }
+        .container { padding: 10px 40px; position: relative; width: 50%; box-sizing: border-box; }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+        
+        /* ✨ 改动3：时间轴圆点变成了粉色 */
+        .container::after {
+            content: ''; position: absolute; width: 16px; height: 16px;
+            right: -11px; background-color: white; border: 4px solid #ff9a9e;
+            top: 20px; border-radius: 50%; z-index: 1;
+        }
+        .right::after { left: -11px; }
+
+        /* 卡片链接样式 */
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .content {
+            padding: 20px; background-color: white; border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        /* ✨ 改动4：鼠标悬停时，底部线条变成粉色 */
+        .content:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.2); 
+            border-bottom: 3px solid #ff9a9e; 
+        }
+        .content h2 { margin: 0 0 10px 0; color: #ff6b6b; font-size: 1.2rem; } /* 标题也改成深粉色 */
+        .date { color: #aaa; font-size: 0.85rem; display: block; margin-bottom: 10px; }
+        .tag { background: #ffe3e3; color: #ff6b6b; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
+        
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .left { text-align: left; }
+            .right { left: 0; }
+            .container::after { left: 18px; }
+            .right::after { left: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>❤️ 小娜&小楷的回忆时光机</h1>
+        
+        <div class="timer-box">
+            <span>这是我们相爱的第</span><br>
+            <b id="days">0</b><span>天</span>
+            <b id="hours">0</b><span>小时</span>
+            <b id="minutes">0</b><span>分</span>
+            <b id="seconds">0</b><span>秒</span>
+        </div>
+    </div>
+
+    <div class="timeline">
+
+        <div class="container left">
+            <a href="Christmas.html" class="card-link">
+                <div class="content">
+                    <span class="date">2025.12.25</span>
+                    <h2>🎄 今年的圣诞节</h2>
+                    <div><span class="tag">节日</span><span class="tag">纪念</span></div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        为你准备了一场专属的雪...
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <div class="container right">
+            <a href="#" class="card-link" onclick="alert('还没做呢，敬请期待！')">
+                <div class="content">
+                    <span class="date">2025.05.01</span>
+                    <h2>🌹 五一假期</h2>
+                    <div><span class="tag">嗨皮日</span></div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        黄石...
+                    </p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+<script>
+        // ---------------------------------------------
+        // 👇👇👇 核心修改在这里 👇👇👇
+        // 格式：YYYY-MM-DDTHH:mm:ss+08:00
+        // T 是日期和时间的分隔符
+        // +08:00 代表强制锁定为东八区（北京时间）
+        const startDate = new Date("2025-01-29T00:00:00+08:00"); 
+        // ---------------------------------------------
+
+        function updateTimer() {
+            const now = new Date(); // 获取现在的时刻（这是全球统一的绝对时间戳）
+            const diff = now - startDate; // 计算差值
+
+            // 防止还没到时间出现负数
+            if (diff < 0) {
+                document.getElementById("days").innerText = "0";
+                document.getElementById("hours").innerText = "0";
+                document.getElementById("minutes").innerText = "0";
+                document.getElementById("seconds").innerText = "0";
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            // 把数字填到上面的HTML里
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        // 让它每秒钟刷新一次
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+
+</body>
+</html>
