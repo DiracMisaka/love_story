@@ -57,7 +57,7 @@
         <h2>🔒 请输入通关密语</h2>
         <input type="password" id="passInput" placeholder="提示：我们的纪念日和名字" onkeypress="handleEnter(event)">
         <br>
-        <button onclick="checkPass()">开启礼物</button>
+        <button onclick="checkPass()">开启甜蜜之旅</button>
         <p class="hint">输入错误将无法找到页面</p>
     </div>
 
@@ -65,6 +65,8 @@
         function checkPass() {
             var password = document.getElementById("passInput").value.trim();
             if (password) {
+                // 核心逻辑：尝试跳转到 "密码.html"
+                // 比如密码是 wo-ai-ni-1314，就跳转到 wo-ai-ni-1314.html
                 window.location.href = password + ".html";
             }
         }
@@ -77,5 +79,4 @@
         }
     </script>
 </body>
-
 </html>
